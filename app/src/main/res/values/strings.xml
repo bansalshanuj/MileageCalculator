@@ -38,6 +38,7 @@
     <string name="action_add_vehicle">Add Vehicle</string>
     <string name="action_add_new_entry">Add new entry</string>
     <string name="low_Mileage_feedback">
+
         The mileage of your vehicle is less than expectation.\n
         This might be because of the following reasons:\n
         1) Your vehicle is due for service. Get it done.\n
@@ -46,12 +47,16 @@
         4) Avoid sudden speeding or braking.\n
     </string>
     <string name="good_Mileage_feedback">
+
         The mileage of your vehicle is at par with your expectations.\n
         To get even better results:\n
         1) Keep tyre air pressure in check.\n
-        2) Fuel up your tank in the morning.\n
+        2) Try to fuel up the tank in the morning.\n
     </string>
+    <string name="how_to_use">
 
+        For Best Results:
+    </string>
     <string-array name="Actions">
         <item>Add Vehicle</item>
         <item>Add New Entry</item>

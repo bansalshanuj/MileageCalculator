@@ -103,13 +103,13 @@ public class UpdateFuelPrices extends ActionBarActivity {
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_how_to_use:
-                Intent usageIntent = new Intent(this,HowToUseActivity.class);
+                Intent usageIntent = new Intent(this, HowToUseActivity.class);
                 // usageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 usageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(usageIntent);
                 return true;
             case R.id.action_info:
-                Intent infoIntent = new Intent(this,InfoActivity.class);
+                Intent infoIntent = new Intent(this, InfoActivity.class);
                 //infoIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 infoIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(infoIntent);

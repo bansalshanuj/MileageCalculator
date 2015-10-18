@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/vehicle_name_select"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <Spinner
             android:id="@+id/vehicleId"
-            style="@style/Widget.MyApp.HeaderBar.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/prev_odo_reading"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/prevOdoReading"
@@ -49,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/curr_odo_reading"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/currOdoReading"
@@ -63,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/fuel_amount"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/fuelAmount"
@@ -77,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/fuel_amount_per_unit"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,26 +91,28 @@
             <EditText
                 android:id="@+id/fuelAmountPerUnit"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:inputType="numberDecimal"
                 android:minWidth="50dp" />
 
             <Button
                 android:id="@+id/updateFuelPriceBtn"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/Update_lbl"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:textColor="#000000"/>
 
             <Button
                 android:id="@+id/cancelFuelPriceBtn"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/Cancel_lbl"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:textColor="#000000"/>
         </LinearLayout>
 
         <Button
@@ -116,7 +122,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:text="@string/add_entry"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
     </LinearLayout>
 </ScrollView>

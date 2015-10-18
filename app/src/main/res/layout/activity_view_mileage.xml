@@ -19,11 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vehicle_name_select"
+            android:textColor="#000000"
             android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/vehiclesList"
-            style="@style/Widget.MyApp.HeaderBar.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"></Spinner>
@@ -38,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="@string/avgMileage"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:id="@+id/vehicleMileage"
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="@string/costPerKm"
+                android:textColor="#000000"
                 android:textStyle="bold" />
 
             <TextView
@@ -69,11 +71,11 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="20dp"
             android:id="@+id/mileageFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:layout_marginTop="20dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -29,6 +30,21 @@ public class AddVehicle extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vehicle);
+
+        // check here if there is already a vehicle registered, then open the add entry page.
+        ArrayList<String> vehiclesList = DatabaseHelper.getInstance(this).getVehiclesList();
+        if (vehiclesList != null || vehiclesList.size() > 0) {
+            Intent addNewEntryIntent = new Intent(this, AddNewEntry.class);
+            // addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(addNewEntryIntent);
+        }
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeButtonEnabled(true);
+            supportActionBar.setIcon(R.drawable.ic_launcher);
+        }
 
         // to set the transparent background.
         Drawable backgroundImage = getResources().getDrawable(R.drawable.background);
@@ -144,7 +160,7 @@ public class AddVehicle extends ActionBarActivity {
                         startActivity(addEntryIntent);
                     } else
                         Toast.makeText(getApplicationContext(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     Toast.makeText(getApplicationContext(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }

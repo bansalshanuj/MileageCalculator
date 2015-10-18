@@ -17,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,7 +46,7 @@ public class ViewMileage extends ActionBarActivity {
         LinearLayout mainActivityLayout = (LinearLayout) findViewById(R.id.viewMileageLL);
         mainActivityLayout.setBackgroundDrawable(backgroundImage);
 
-        final TextView mileageFeedback = (TextView)findViewById(R.id.mileageFeedback);
+        final TextView mileageFeedback = (TextView) findViewById(R.id.mileageFeedback);
         mileageFeedback.setVisibility(View.GONE);
 
         Spinner vehicleSpinner = (Spinner) findViewById(R.id.vehiclesList);
@@ -82,11 +80,11 @@ public class ViewMileage extends ActionBarActivity {
                     ((TextView) findViewById(R.id.expensePerKm)).setText("Rs. " + mileageInfo.get("ExpensePerKm"));
                 }
 
-                if(actualMileage>=expectedMileage){
+                if (actualMileage >= expectedMileage) {
                     mileageFeedback.setVisibility(View.VISIBLE);
                     mileageFeedback.setTextColor(Color.GREEN);
                     mileageFeedback.setText(getResources().getString(R.string.good_Mileage_feedback));
-                }else {
+                } else {
                     mileageFeedback.setVisibility(View.VISIBLE);
                     mileageFeedback.setTextColor(Color.RED);
                     mileageFeedback.setText(getResources().getString(R.string.low_Mileage_feedback));

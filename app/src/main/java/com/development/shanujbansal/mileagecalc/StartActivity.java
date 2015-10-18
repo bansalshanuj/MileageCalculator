@@ -1,23 +1,19 @@
 package com.development.shanujbansal.mileagecalc;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import java.util.ArrayList;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class StartActivity extends ActionBarActivity implements ActionBar.TabListener{
+public class StartActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     // Within which the entire activity is enclosed
     DrawerLayout mDrawerLayout;
@@ -26,7 +22,7 @@ public class StartActivity extends ActionBarActivity implements ActionBar.TabLis
     // ActionBarDrawerToggle indicates the presence of Navigation Drawer in the action bar
     ActionBarDrawerToggle mDrawerToggle;
     // Title of the action bar
-    String mTitle="";
+    String mTitle = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +53,11 @@ public class StartActivity extends ActionBarActivity implements ActionBar.TabLis
         mDrawerList = (ListView) findViewById(R.id.nav_drawer_list);
 
         // Getting reference to the ActionBarDrawerToggle
-        mDrawerToggle = new ActionBarDrawerToggle( this,
+        mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout,
                 R.drawable.background,
                 R.string.drawer_open,
-                R.string.drawer_close){
+                R.string.drawer_close) {
 
             /** Called when drawer is closed */
             public void onDrawerClosed(View view) {
@@ -82,14 +78,14 @@ public class StartActivity extends ActionBarActivity implements ActionBar.TabLis
         // Creating an ArrayAdapter to add items to the listview mDrawerList
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getBaseContext(),
-                R.layout.drawer_list_item ,
+                R.layout.drawer_list_item,
                 getResources().getStringArray(R.array.Actions)
         );
 
         // Setting the adapter on mDrawerList
         mDrawerList.setAdapter(adapter);
 
-        if(getActionBar() !=null) {
+        if (getActionBar() != null) {
             // Enabling Home button
             getActionBar().setHomeButtonEnabled(true);
             // Enabling Up navigation

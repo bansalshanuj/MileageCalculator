@@ -22,17 +22,18 @@
             android:layout_marginBottom="20dp"
             android:text="@string/title_activity_view_fuel_prices"
             android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/region_name"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <Spinner
             android:id="@+id/regionSelectSpinner"
-            style="@style/Widget.MyApp.HeaderBar.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -44,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/petrol_price"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/petrolPriceDisplay"
@@ -61,7 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/diesel_price"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/dieselPriceDisplay"
@@ -78,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/cng_price"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/cngPriceDisplay"

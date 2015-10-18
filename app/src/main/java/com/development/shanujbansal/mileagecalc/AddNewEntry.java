@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,6 +38,12 @@ public class AddNewEntry extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_enrty);
 
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeButtonEnabled(true);
+            supportActionBar.setIcon(R.drawable.ic_launcher);
+        }
+
         Bundle infoBundle = getIntent().getExtras();
         String selectedVehicle = "";
         if (infoBundle != null) {
@@ -60,7 +67,6 @@ public class AddNewEntry extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), "There are no vehicles registered. Please register a vehicle first", Toast.LENGTH_LONG).show();
             // start add vehicle intent here.
             Intent addVehicleIntent = new Intent(this, AddVehicle.class);
-            // addVehicleIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             addVehicleIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(addVehicleIntent);
             return;
@@ -291,7 +297,7 @@ public class AddNewEntry extends ActionBarActivity {
             case R.id.action_how_to_use:
                 Intent usageIntent = new Intent(this, HowToUseActivity.class);
                 //usageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                usageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                usageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(usageIntent);
                 return true;
             case R.id.action_info:
