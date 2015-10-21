@@ -1,15 +1,13 @@
 package com.development.shanujbansal.mileagecalc;
 
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,38 +18,45 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//import android.support.v4.app.Fragment;
 
-public class ViewMileage extends ActionBarActivity {
+
+public class ViewMileage extends Fragment {
+
+    public ViewMileage() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_mileage);
+        final View rootView = inflater.inflate(R.layout.activity_view_mileage, container, false);
+        //setContentView(R.layout.activity_view_mileage);
 
         // close the onscreenkeyboard in case it is opened.
         try {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         } catch (Exception ex) {
         }
 
-        Bundle infoBundle = getIntent().getExtras();
+        // Bundle infoBundle = getIntent().getExtras();
         String selectedVehicle = "";
-        if (infoBundle != null) {
-            selectedVehicle = infoBundle.getString("SelectedVehicle");
+        if (getArguments() != null) {
+            selectedVehicle = getArguments().getString("SelectedVehicle");
         }
 
         Drawable backgroundImage = getResources().getDrawable(R.drawable.background);
         backgroundImage.setAlpha(25);
-        LinearLayout mainActivityLayout = (LinearLayout) findViewById(R.id.viewMileageLL);
+        LinearLayout mainActivityLayout = (LinearLayout) rootView.findViewById(R.id.viewMileageLL);
         mainActivityLayout.setBackgroundDrawable(backgroundImage);
 
-        final TextView mileageFeedback = (TextView) findViewById(R.id.mileageFeedback);
+        final TextView mileageFeedback = (TextView) rootView.findViewById(R.id.mileageFeedback);
         mileageFeedback.setVisibility(View.GONE);
 
-        Spinner vehicleSpinner = (Spinner) findViewById(R.id.vehiclesList);
-        ArrayList<String> vehiclesList = DatabaseHelper.getInstance(this).getVehiclesList();
-        ArrayAdapter<String> vehiclesListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, vehiclesList);
+        Spinner vehicleSpinner = (Spinner) rootView.findViewById(R.id.vehiclesList);
+        ArrayList<String> vehiclesList = DatabaseHelper.getInstance(getActivity()).getVehiclesList();
+        ArrayAdapter<String> vehiclesListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, vehiclesList);
         vehicleSpinner.setAdapter(vehiclesListAdapter);
 
         if (!selectedVehicle.isEmpty()) {
@@ -73,11 +78,11 @@ public class ViewMileage extends ActionBarActivity {
 
                 if (mileageInfo != null && mileageInfo.size() > 0) {
                     if (mileageInfo.containsKey("Mileage")) {
-                        ((TextView) findViewById(R.id.vehicleMileage)).setText(mileageInfo.get("Mileage") + " Km/L");
+                        ((TextView) rootView.findViewById(R.id.vehicleMileage)).setText(mileageInfo.get("Mileage") + " Km/L");
                         actualMileage = Double.valueOf(mileageInfo.get("Mileage"));
                     }
                     if (mileageInfo.containsKey("ExpensePerKm")) ;
-                    ((TextView) findViewById(R.id.expensePerKm)).setText("Rs. " + mileageInfo.get("ExpensePerKm"));
+                    ((TextView) rootView.findViewById(R.id.expensePerKm)).setText("Rs. " + mileageInfo.get("ExpensePerKm"));
                 }
 
                 if (actualMileage >= expectedMileage) {
@@ -96,9 +101,12 @@ public class ViewMileage extends ActionBarActivity {
 
             }
         });
+
+        return rootView;
     }
 
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -137,4 +145,5 @@ public class ViewMileage extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

@@ -1,13 +1,11 @@
 package com.development.shanujbansal.mileagecalc;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,23 +15,30 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//import android.support.v4.app.Fragment;
 
-public class ViewFuelPrices extends ActionBarActivity {
+
+public class ViewFuelPrices extends Fragment {
+
+    public ViewFuelPrices() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_fuel_prices);
+        final View rootView = inflater.inflate(R.layout.activity_view_fuel_prices, container, false);
+        //setContentView(R.layout.activity_view_fuel_prices);
 
         Drawable backgroundImage = getResources().getDrawable(R.drawable.background);
         backgroundImage.setAlpha(25);
-        LinearLayout mainActivityLayout = (LinearLayout) findViewById(R.id.fuelPricesViewLL);
+        LinearLayout mainActivityLayout = (LinearLayout) rootView.findViewById(R.id.fuelPricesViewLL);
         mainActivityLayout.setBackgroundDrawable(backgroundImage);
 
         // populate the region spinner.
-        final Spinner regionSpinner = (Spinner) findViewById(R.id.regionSelectSpinner);
-        ArrayList<String> regionsList = DatabaseHelper.getInstance(this).getRegionsList();
-        regionSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, regionsList));
+        final Spinner regionSpinner = (Spinner) rootView.findViewById(R.id.regionSelectSpinner);
+        ArrayList<String> regionsList = DatabaseHelper.getInstance(getActivity()).getRegionsList();
+        regionSpinner.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, regionsList));
 
         regionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -43,13 +48,13 @@ public class ViewFuelPrices extends ActionBarActivity {
 
                 if (fuelPrices != null && fuelPrices.size() > 0) {
                     if (fuelPrices.containsKey("petrolPrice"))
-                        ((EditText) findViewById(R.id.petrolPriceDisplay)).setText(fuelPrices.get("petrolPrice"));
+                        ((EditText) rootView.findViewById(R.id.petrolPriceDisplay)).setText(fuelPrices.get("petrolPrice"));
 
                     if (fuelPrices.containsKey("dieselPrice"))
-                        ((EditText) findViewById(R.id.dieselPriceDisplay)).setText(fuelPrices.get("dieselPrice"));
+                        ((EditText) rootView.findViewById(R.id.dieselPriceDisplay)).setText(fuelPrices.get("dieselPrice"));
 
                     if (fuelPrices.containsKey("cngPrice"))
-                        ((EditText) findViewById(R.id.cngPriceDisplay)).setText(fuelPrices.get("cngPrice"));
+                        ((EditText) rootView.findViewById(R.id.cngPriceDisplay)).setText(fuelPrices.get("cngPrice"));
                 }
             }
 
@@ -58,9 +63,11 @@ public class ViewFuelPrices extends ActionBarActivity {
 
             }
         });
+
+        return rootView;
     }
 
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -99,4 +106,5 @@ public class ViewFuelPrices extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

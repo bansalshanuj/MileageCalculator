@@ -1,16 +1,14 @@
 package com.development.shanujbansal.mileagecalc;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -23,56 +21,63 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+// import android.support.v4.app.Fragment;
 
-public class AddVehicle extends ActionBarActivity {
+
+public class AddVehicle extends Fragment {
+
+    public AddVehicle() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_vehicle);
+        final View rootView = inflater.inflate(R.layout.activity_add_vehicle, container, false);
+        //setContentView(R.layout.activity_add_vehicle);
 
         // check here if there is already a vehicle registered, then open the add entry page.
-        ArrayList<String> vehiclesList = DatabaseHelper.getInstance(this).getVehiclesList();
-        if (vehiclesList != null || vehiclesList.size() > 0) {
-            Intent addNewEntryIntent = new Intent(this, AddNewEntry.class);
-            // addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(addNewEntryIntent);
-        }
+//        ArrayList<String> vehiclesList = DatabaseHelper.getInstance(getActivity()).getVehiclesList();
+//        if (vehiclesList != null || vehiclesList.size() > 0) {
+//            Intent addNewEntryIntent = new Intent(getActivity(), AddNewEntry.class);
+//            // addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            addNewEntryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(addNewEntryIntent);
+//        }
 
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setHomeButtonEnabled(true);
-            supportActionBar.setIcon(R.drawable.ic_launcher);
-        }
+//        ActionBar supportActionBar = getSupportActionBar();
+//        if (supportActionBar != null) {
+//            supportActionBar.setHomeButtonEnabled(true);
+//            supportActionBar.setIcon(R.drawable.ic_launcher);
+//        }
 
         // to set the transparent background.
         Drawable backgroundImage = getResources().getDrawable(R.drawable.background);
         backgroundImage.setAlpha(25);
-        LinearLayout mainActivityLayout = (LinearLayout) findViewById(R.id.newVehicleAddLL);
+        LinearLayout mainActivityLayout = (LinearLayout) rootView.findViewById(R.id.newVehicleAddLL);
         mainActivityLayout.setBackgroundDrawable(backgroundImage);
 
         // populate the fuel type spinner
-        final Spinner fuelTypeSpinner = (Spinner) findViewById(R.id.vehicleFuelType);
-        fuelTypeSpinner.setAdapter(new ArrayAdapter<FuelType>(this, android.R.layout.simple_list_item_1, FuelType.values()));
+        final Spinner fuelTypeSpinner = (Spinner) rootView.findViewById(R.id.vehicleFuelType);
+        fuelTypeSpinner.setAdapter(new ArrayAdapter<FuelType>(getActivity(), android.R.layout.simple_list_item_1, FuelType.values()));
 
         // populate the region spinner.
-        final Spinner regionSpinner = (Spinner) findViewById(R.id.vehicleRegion);
-        ArrayList<String> regionsList = DatabaseHelper.getInstance(this).getRegionsList();
-        regionSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, regionsList));
+        final Spinner regionSpinner = (Spinner) rootView.findViewById(R.id.vehicleRegion);
+        ArrayList<String> regionsList = DatabaseHelper.getInstance(getActivity()).getRegionsList();
+        regionSpinner.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, regionsList));
 
-        final EditText vehicleNameTxtBox = (EditText) findViewById(R.id.vehicleName);
-        final EditText vehicleBaseReadingTxtBox = (EditText) findViewById(R.id.vehicleBaseReading);
-        final EditText vehicleRegNumberTxtBox = (EditText) findViewById(R.id.vehicleRegNumber);
-        final EditText vehicleExpectedMileageTxtBox = (EditText) findViewById(R.id.vehicleExpectedMileage);
+        final EditText vehicleNameTxtBox = (EditText) rootView.findViewById(R.id.vehicleName);
+        final EditText vehicleBaseReadingTxtBox = (EditText) rootView.findViewById(R.id.vehicleBaseReading);
+        final EditText vehicleRegNumberTxtBox = (EditText) rootView.findViewById(R.id.vehicleRegNumber);
+        final EditText vehicleExpectedMileageTxtBox = (EditText) rootView.findViewById(R.id.vehicleExpectedMileage);
 
         // to hide keyboard in case of next or enter clicked from keyboard.
         vehicleNameTxtBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     } catch (Exception ex) {
                     }
                 }
@@ -83,8 +88,8 @@ public class AddVehicle extends ActionBarActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     } catch (Exception ex) {
                     }
                 }
@@ -95,8 +100,8 @@ public class AddVehicle extends ActionBarActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     } catch (Exception ex) {
                     }
                 }
@@ -107,8 +112,8 @@ public class AddVehicle extends ActionBarActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     } catch (Exception ex) {
                     }
                 }
@@ -117,14 +122,14 @@ public class AddVehicle extends ActionBarActivity {
         });
 
 
-        Button addVehicleButton = (Button) findViewById(R.id.addVehicleBtn);
+        Button addVehicleButton = (Button) rootView.findViewById(R.id.addVehicleBtn);
         addVehicleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // to hide the keypad in case it's opened
                 try {
-                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 } catch (Exception ex) {
                 }
 
@@ -137,13 +142,13 @@ public class AddVehicle extends ActionBarActivity {
                 String vehExpectedMileage = vehicleExpectedMileageTxtBox.getText().toString().trim();
 
                 if (vehName.isEmpty() || vehBaseReading.isEmpty() || vehRegNumber.isEmpty() || vehExpectedMileage.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please enter the complete details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please enter the complete details", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 try {
-                    if (DatabaseHelper.getInstance(getApplicationContext()).addVehicle(vehName, fuelType, vehBaseReading, vehRegionId, vehRegNumber, Double.valueOf(vehExpectedMileage))) {
-                        Toast.makeText(getApplicationContext(), "Vehicle registered successfully", Toast.LENGTH_SHORT).show();
+                    if (DatabaseHelper.getInstance(getActivity()).addVehicle(vehName, fuelType, vehBaseReading, vehRegionId, vehRegNumber, Double.valueOf(vehExpectedMileage))) {
+                        Toast.makeText(getActivity(), "Vehicle registered successfully", Toast.LENGTH_SHORT).show();
                         vehicleNameTxtBox.setText("");
                         vehicleBaseReadingTxtBox.setText("");
                         vehicleRegNumberTxtBox.setText("");
@@ -151,7 +156,7 @@ public class AddVehicle extends ActionBarActivity {
                         regionSpinner.setSelection(0);
                         fuelTypeSpinner.setSelection(0);
 
-                        Intent addEntryIntent = new Intent(getApplicationContext(), AddNewEntry.class);
+                        Intent addEntryIntent = new Intent(getActivity(), AddNewEntry.class);
                         Bundle infoBundle = new Bundle();
                         infoBundle.putString("SelectedVehicle", vehName);
                         addEntryIntent.putExtras(infoBundle);
@@ -159,14 +164,17 @@ public class AddVehicle extends ActionBarActivity {
                         addEntryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(addEntryIntent);
                     } else
-                        Toast.makeText(getApplicationContext(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
                 } catch (Exception ex) {
-                    Toast.makeText(getApplicationContext(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Unable to register the vehicle.Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        return rootView;
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -211,4 +219,5 @@ public class AddVehicle extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

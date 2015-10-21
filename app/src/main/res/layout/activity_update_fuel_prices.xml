@@ -21,16 +21,16 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:text="@string/title_activity_view_fuel_prices"
+            android:textColor="#000000"
             android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/region_name"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/regionSelectSpinner"
@@ -45,8 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/petrol_price"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/petrolPriceDisplay"
@@ -55,16 +55,15 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:cursorVisible="true"
-            android:inputType="numberDecimal"
-            android:textIsSelectable="true" />
+            android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/diesel_price"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/dieselPriceDisplay"
@@ -73,16 +72,15 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:cursorVisible="true"
-            android:inputType="numberDecimal"
-            android:textIsSelectable="true" />
+            android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="@string/cng_price"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/cngPriceDisplay"
@@ -91,8 +89,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:cursorVisible="true"
-            android:inputType="numberDecimal"
-            android:textIsSelectable="true" />
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/updateRegionFuelPrice"
@@ -100,6 +97,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/Update_lbl"
-            android:textColor="#000000"/>
+            android:textColor="#000000" />
     </LinearLayout>
 </ScrollView>
